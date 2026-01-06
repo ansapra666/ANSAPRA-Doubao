@@ -416,7 +416,14 @@ def server_error(e):
 # ------------------------------
 # 启动配置
 # ------------------------------
+# ------------------------------
+# 启动配置
+# ------------------------------
 if __name__ == '__main__':
-    # Render 要求端口为 10000
+    # 本地开发环境启动
     port = int(os.environ.get('PORT', 10000))
-    app.run(host='0.0.0.0', port=port, debug=False)  # 生产环境关闭 debug
+    app.run(host='0.0.0.0', port=port, debug=False)
+else:
+    # 生产环境（Gunicorn）启动时的配置
+    # 确保 Flask 应用实例能被 Gunicorn 正确识别
+    application = app  # Gunicorn 也可以识别 application 作为入口
