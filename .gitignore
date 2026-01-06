@@ -1,0 +1,49 @@
+# Python 相关
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-wheel-metadata/
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 上传文件
+uploads/
+
+# 日志
+*.log
+logs/
+
+# IDE 配置
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 缓存
+*.pyc
+*.pyo
+*.pyd
