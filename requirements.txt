@@ -1,6 +1,11 @@
+# 原有依赖
 flask==2.3.3
 requests==2.31.0
 pyjwt==2.8.0
 werkzeug==2.3.7
 python-dotenv==1.0.0
 uuid==1.30
+
+# 新增生产环境依赖
+gunicorn==21.2.0  # WSGI 服务器
+psycopg2-binary==2.9.9  # （可选）如果后续使用 PostgreSQL
