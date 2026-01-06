@@ -2,20 +2,28 @@ services:
   - type: web
     name: ansapra
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python app.py"
+    # 构建命令：安装依赖 + 创建上传目录
+    buildCommand: |
+      pip install -r requirements.txt
+      mkdir -p uploads
+    # 启动命令：使用 gunicorn 启动，指定端口和工作进程
+    startCommand: "gunicorn --bind 0.0.0.0:$PORT app:app --workers 1 --timeout 120"
     envVars:
       - key: SECRET_KEY
         generateValue: true
       - key: JWT_SECRET
         generateValue: true
       - key: DEEPSEEK_API_KEY
-        description: "Your DeepSeek API Key"
+        description: "从 DeepSeek 官网获取：https://platform.deepseek.com/"
       - key: SPRINGER_API_KEY
-        description: "Your Springer Open Access API Key"
+        description: "从 Springer 官网获取：https://dev.springernature.com/"
+      - key: PYTHONUNBUFFERED
+        value: "1"
     disk:
       name: ansapra-uploads
       mountPath: /opt/render/project/src/uploads
       sizeGB: 1
-    plan: free  # 可根据需要升级为 starter 或更高版本
+    plan: free
     pythonVersion: "3.10.0"
+    healthCheckPath: /
+    autoDeploy: true
